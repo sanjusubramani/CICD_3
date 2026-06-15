@@ -1,14 +1,17 @@
-kind: Service
 apiVersion: v1
+kind: Service
+
 metadata:
   name: my-frontend-service
-  labels:
-    app: my-frontend-service
+
 spec:
-   ports:
-    - port: 8082
+  type: NodePort
+
+  selector:
+    app: my-frontend
+
+  ports:
+    - protocol: TCP
+      port: 8082
       targetPort: 80
       nodePort: 31200
-   selector:
-     app: my-frontend 
-     type: LoadBalancer
